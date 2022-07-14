@@ -7,7 +7,7 @@ Find the project here [https://github.com/philip0000000/OldFileFormatToXML]
 
 ## Information
 
-The author of the program is not an expert in cryptographer. Reling on the encryption of this program, for real world sensitive data is not advised as the program has not yet been thoroughly tested against cryptographic attacks. This program was made by the author to learn more about irrational numbers and about encryption.
+The author of the program is not an expert in cryptographer. Relying on the encryption of this program, for real world sensitive data is not advised as the program has not yet been thoroughly tested against cryptographic attacks. This program was made by the author to learn more about irrational numbers and about encryption.
 
 The idea of the program is to use the one-time pad[1]. But with a key that is much shorter then the plain text data that is going to be encrypted or vice versa, ciphertext to plaintext. One solution to this problem is stream ciphers[2]. This program, instead of using a stream cipher for generating the key, is using irrational number[3].
 
