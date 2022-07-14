@@ -28,7 +28,9 @@ The autor is working on fixing this, so that all characters can be used.
 ## Usage
 
 When choosing the number to use for generating the square root number, it is advised to use the command:
+```
 sqrtCipher.py -nsqrt
+```
 As this will generate the N-th non-square number, if one does not use this option, there is a chance one may pick a number that is not irrational. To generate a non-square number, an interesting algorithm was used[7].
 
 The irrational number must be 3x larger than the plaintext in length, that will be encrypted. The reason for this is that 2 decimal numbers are used for 1 character, generating 3 decimal numbers instead of just 2 is just for extra safety if there is some weird thing when encrypting the plain text. To see the size of a file, use the command:
