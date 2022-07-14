@@ -486,7 +486,7 @@ def my_character_encoding_to_number(character):
     return int(my_character_encoding[character])
 
 def xor_encrypt(character, two_decimal_digits):
-    print(character, file = sys.stderr)
+    #print(character, file = sys.stderr)
     chipercharacter = my_character_encoding_to_number(character)
     key = int(two_decimal_digits)
     while key > 63:
