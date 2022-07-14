@@ -75,7 +75,7 @@ python sqrtCipher.py -dist long_plain_text2.txt
 File: long_plain_text2.txt
 
 see for a example, the image: example.jpg
-[<img src="https://raw.githubusercontent.com/philip0000000/square-root-irrational-number-cipher/main/example.jpg" />]
+<img src="https://raw.githubusercontent.com/philip0000000/square-root-irrational-number-cipher/main/example.jpg" />
 
 ## License
 
