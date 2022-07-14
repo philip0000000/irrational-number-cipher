@@ -2,7 +2,8 @@
 
 Cipher that uses a key that is an irrational number. The irrational number is from the square root of a non-square number.
 
-Written by philip0000000 <br>
+Written by philip0000000
+
 Find the project here [https://github.com/philip0000000/OldFileFormatToXML]
 
 ## Information
