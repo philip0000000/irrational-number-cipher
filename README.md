@@ -99,7 +99,7 @@ python sqrtCipher.py -di long_plain_text2.txt
 python sqrtCipher.py -dist long_plain_text2.txt
 ```
 
-![example.jpg]([https://myoctocat.com/assets/images/base-octocat.svg](https://raw.githubusercontent.com/philip0000000/square-root-irrational-number-cipher/main/example.jpg))
+![This is an image]([https://myoctocat.com/assets/images/base-octocat.svg](https://raw.githubusercontent.com/philip0000000/square-root-irrational-number-cipher/main/example.jpg))
 
 ## License
 
