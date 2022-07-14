@@ -110,7 +110,6 @@ License under GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 ## Reference
 
 [1] https://en.wikipedia.org/wiki/One-time_pad
-
 [2] https://en.wikipedia.org/wiki/Stream_cipher
 
 [3] https://en.wikipedia.org/wiki/Irrational_number
