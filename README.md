@@ -63,14 +63,13 @@ Example:
 1. Get length of file
 ```
 $ python sqrtCipher.py -l long_plain_text.txt
+$ 36859   # 36859 * 3 = 110577 (length of square root number)
 ```
-    36859
-    36859 * 3 = 110577 (length of square root number)
 2. Get random non square number
 ```
 $ python sqrtCipher.py -nsqrt 83927923784947328923
+$ 83927923794108547389
 ```
-    83927923794108547389
 3. Get the square root value
 ```
 $ python sqrtCipher.py -sqrt 83927923794108547389 sqrt.txt 110577
@@ -78,9 +77,8 @@ $ python sqrtCipher.py -sqrt 83927923794108547389 sqrt.txt 110577
 4. Check that the square root value is correct length]
 ```
 $ python sqrtCipher.py -l sqrt.txt
+$ 110578
 ```
-    110578
-
 
 5. Encrypt:
 ```
@@ -92,11 +90,10 @@ $ python sqrtCipher.py -de long_plain_text2.txt sqrt.txt long_plain_text3.txt
 ```
 
 ---check that the encryption is good---
-1. check count in encrypted file. Encrypted file should have the same amount of characters for every character.
+1. check count in encrypted file. Encrypted file should have the same amount of characters for every character(1/63 = 0.015).
 ```
 $ python sqrtCipher.py -di long_plain_text2.txt
 ```
-    1/63 = 0.015
 2. check the cluster. should be evenly clustered
 ```
 $ python sqrtCipher.py -dist long_plain_text2.txt
