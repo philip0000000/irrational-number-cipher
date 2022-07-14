@@ -89,7 +89,7 @@ python sqrtCipher.py -e long_plain_text.txt sqrt.txt long_plain_text2.txt
 python sqrtCipher.py -de long_plain_text2.txt sqrt.txt long_plain_text3.txt
 ```
 
-#### check that the encryption is good
+#### Check that the encryption is good
 1. check count in encrypted file. Encrypted file should have the same amount of characters for every character(1/63 = 0.015).
 ```
 python sqrtCipher.py -di long_plain_text2.txt
@@ -99,8 +99,8 @@ python sqrtCipher.py -di long_plain_text2.txt
 python sqrtCipher.py -dist long_plain_text2.txt
 ```
 
-see for a example, the image: example.jpg
 <img src="https://raw.githubusercontent.com/philip0000000/square-root-irrational-number-cipher/main/example.jpg" />
+see for a example, the image: example.jpg
 
 ## License
 
