@@ -59,7 +59,7 @@ sqrtCipher.py -di
 sqrtCipher.py -dist
 ```
 
-Example:
+#### Example:
 1. Get length of file
 ```
 python sqrtCipher.py -l long_plain_text.txt
@@ -89,7 +89,7 @@ python sqrtCipher.py -e long_plain_text.txt sqrt.txt long_plain_text2.txt
 python sqrtCipher.py -de long_plain_text2.txt sqrt.txt long_plain_text3.txt
 ```
 
----check that the encryption is good---
+#### check that the encryption is good
 1. check count in encrypted file. Encrypted file should have the same amount of characters for every character(1/63 = 0.015).
 ```
 python sqrtCipher.py -di long_plain_text2.txt
