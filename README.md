@@ -70,7 +70,7 @@ sqrtCipher.py -dist
 python sqrtCipher.py -l long_plain_text.txt
 36859   # 36859 * 3 = 110577 (length of square root number)
 ```
-2. Get random non square number
+2. Get random non-square number
 ```
 python sqrtCipher.py -nsqrt 83927923784947328923
 83927923794108547389
