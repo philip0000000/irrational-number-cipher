@@ -658,7 +658,7 @@ def main():
     parser.add_argument("-dd", metavar = "<filename>", help = "get distribution of numbers in the file")
     parser.add_argument("-dl", metavar = "<filename>", help = "get length of file in numbers")
     parser.add_argument("-e", metavar = ("<filename to encrypt>", "<filename of file with number>", "<output filename>"), nargs = 3, help = "encrypt file")
-    parser.add_argument("-de", metavar = ("<filename to deencrypt>", "<filename of file with number>", "<output filename>"), nargs = 3, help = "decrypt file")
+    parser.add_argument("-de", metavar = ("<filename to decrypt>", "<filename of file with number>", "<output filename>"), nargs = 3, help = "decrypt file")
     parser.add_argument("-nsqrt", metavar = "<n number of square root to return>", help = "get the n-th number of non-square")
     parser.add_argument("-dist", metavar = "<filename>", help = "get distribution of character in file compared to each other(0 == no distrubution/all characters are in a clusters, 1 == even distrubution of character in file, X > 1 more distrubuted)")
     args = parser.parse_args()
