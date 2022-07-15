@@ -2,9 +2,9 @@
 
 Cipher that uses a key that is an irrational number. The irrational number is from the square root of a non-square number.
 
-Program has been successfully tested on Windows 10 and Ubuntu 22.04 LTS with Python 3.10. <br>
 Written by philip0000000 <br>
-Find the project here [https://github.com/philip0000000/OldFileFormatToXML]
+Find the project here [https://github.com/philip0000000/OldFileFormatToXML] <br>
+Program has been successfully tested on Windows 10 and Ubuntu 22.04 LTS with Python 3.10.
 
 ## Information
 
