@@ -79,7 +79,7 @@ python sqrtCipher.py -nsqrt 83927923784947328923
 ```
 python sqrtCipher.py -sqrt 83927923794108547389 sqrt.txt 110577
 ```
-4. Check that the square root value is correct length]
+4. Check that the square root value is correct length
 ```
 python sqrtCipher.py -l sqrt.txt
 110578
