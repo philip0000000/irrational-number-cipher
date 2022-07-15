@@ -60,11 +60,11 @@ def save_sqrt_to_file(radicand, write_to_filename, number_of_precision):
     except negative_number_error as ex:
         print("ERROR!", file = sys.stderr)
         print(ex, file = sys.stderr)
-        print(f"writing the square root of {radicand} to the file {write_to_filename} was aborted", file = sys.stderr)
+        print(f"Writing the square root of {radicand} to the file {write_to_filename} was aborted", file = sys.stderr)
     except OSError:
         print("ERROR!", file = sys.stderr)
         print(f"Could not write to the file: {write_to_filename},", file = sys.stderr)
-        print(f"writing the square root of {radicand} to the file {write_to_filename} was aborted", file = sys.stderr)
+        print(f"Writing the square root of {radicand} to the file {write_to_filename} was aborted", file = sys.stderr)
 
 #https://everydaycalculation.com/square-root-calculator.php
 #
@@ -495,7 +495,6 @@ def xor_encrypt(character, two_decimal_digits):
     # xor
     chiper = chipercharacter ^ key
     
-    #print(chiper)
     # return character
     return number_to_my_character_encoding(chiper)
     #ord
@@ -542,6 +541,9 @@ def encrypt_file(plain_text_file, key_file, file_to_store_chiper):
                     # end loop if there dose not exist enough key data
                     if key_text_not_enough_data is True:
                         break
+                    # ignore LF
+                    if ord(character_to_encrypt) == 10:
+                        continue
                     #print("C: " + character_to_encrypt + " k:" + key, file = sys.stderr)
                     # get chiper and write chiper to file
                     encrypted_character = xor_encrypt(character_to_encrypt, key)
@@ -584,7 +586,6 @@ def decrypt_file(chiper_file, key_file, file_to_store_plain_text):
                     #print("E: " + encrypted_character, file = sys.stderr)
                     plain_text_write.write(encrypted_character)
 
-
 def get_n_non_square_number(n):
     """Get the Nth non square number"""
     # Proof: https://www.jstor.org/stable/3618253?seq=1
@@ -597,7 +598,6 @@ def get_distributing_of_character_compared_to_each_other(filename):
     else:
         # Initialize what to searching for
         find_this = []
-        
         
         # Count characters
         with open(filename) as f:
@@ -658,7 +658,7 @@ def main():
     parser.add_argument("-dd", metavar = "<filename>", help = "get distribution of numbers in the file")
     parser.add_argument("-dl", metavar = "<filename>", help = "get length of file in numbers")
     parser.add_argument("-e", metavar = ("<filename to encrypt>", "<filename of file with number>", "<output filename>"), nargs = 3, help = "encrypt file")
-    parser.add_argument("-de", metavar = ("<filename to deencrypt>", "<filename of file with number>", "<output filename>"), nargs = 3, help = "deencrypt file")
+    parser.add_argument("-de", metavar = ("<filename to deencrypt>", "<filename of file with number>", "<output filename>"), nargs = 3, help = "decrypt file")
     parser.add_argument("-nsqrt", metavar = "<n number of square root to return>", help = "get the n-th number of non-square")
     parser.add_argument("-dist", metavar = "<filename>", help = "get distribution of character in file compared to each other(0 == no distrubution/all characters are in a clusters, 1 == even distrubution of character in file, X > 1 more distrubuted)")
     args = parser.parse_args()
