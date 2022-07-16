@@ -106,6 +106,17 @@ python sqrtCipher.py -dist long_plain_text2.txt
 
 ![square-root-irrational-number-cipher](example.jpg "example")
 
+#### Schizophrenic number
+Schizophrenic numbers[8] are numbers that show a specific pattern when calculating the square root of. One should avoid using these numbers. The formula to calculate schizophrenic numbers is:
+```
+f(n) = 10 f(n − 1) + n with the initial value f(0) = 0
+```
+One can also get some kind of schizophrenic numbers(not really, more pseudo schizophrenic numbers) by repeating "123456790". As for example the sqrt of 123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790 is:
+```
+11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111.111111111111111111111111111111111111111111111111111111...
+```
+These numbers are not recomended to use as a key when encrypting.
+
 ## License
 
 License under GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
@@ -119,3 +130,4 @@ License under GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 [5] https://en.wikipedia.org/wiki/Exclusive_or <br>
 [6] https://crypto.stackexchange.com/questions/47/with-sufficient-randomness-is-xor-an-acceptable-mechanism-for-encrypting <br>
 [7] https://www.jstor.org/stable/3618253?seq=1 <br>
+[8] https://en.wikipedia.org/wiki/Schizophrenic_number <br>
