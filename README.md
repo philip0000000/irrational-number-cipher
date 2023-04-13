@@ -119,7 +119,7 @@ These numbers are not recomended to use as a key when encrypting.
 
 ## License
 
-License under GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
+Licensed under the MIT license.
 
 ## Reference
 
