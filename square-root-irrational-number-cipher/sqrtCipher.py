@@ -86,10 +86,10 @@ def number_of_characters_in_file(filename):
         print(f"Could not find the file {filename},", file = sys.stderr)
         print(f"Writing the number of characters in the file {filename} was aborted", file = sys.stderr)
 
-def xor_file(plain_text_file, key_file, file_to_store_cipher):
+def xor_file(input_file, key_file, output_file):
     try:
         # Read plain text file
-        with open(plain_text_file, 'rb') as file:
+        with open(input_file, 'rb') as file:
             plain_text = file.read()
         
         # Read key file
@@ -111,7 +111,7 @@ def xor_file(plain_text_file, key_file, file_to_store_cipher):
             key_index = (key_index + 2) % len(key) # wrap around key index
             
         # Open the file in write mode, overwriting its contents if it exists
-        with open(file_to_store_cipher, "wb") as file:
+        with open(output_file, "wb") as file:
             file.write(byte_values_output) # Write byte values to file
         
     except FileNotFoundError as e:
@@ -163,53 +163,89 @@ def get_distrubution_of_characters_in_file(filename_to_read, ignore_escape_chara
         print(f"Calculating the distribution of numbers in the file {filename_to_read} was aborted", file = sys.stderr)
         data_character_distrubution = {}
     return data_character_distrubution
-def get_distrubution_of_digits_in_file(filename_to_read):
-    """Return the distribution of digits in the file to read from."""
-    data_number_distrubution = {}
-    find_this = []
+
+def is_number(s):
     try:
-        if os.stat(filename_to_read).st_size == 0:
-            print(f"The file {filename_to_read} is empty!")
-        else:
-            # Initialize the dictionary and list, which hold the return value and what to search for
-            for n in range(0, 10):
-                data_number_distrubution[f"occurrence_of_number_{n}"] = 0
-                data_number_distrubution[f"percentage_of_number_{n}"] = 0
-                # what to searching for
-                find_this.append(str(n))
-            data_number_distrubution["total_amount_of_numbers"] = 0
-            
-            # Count decimal numbers
-            with open(filename_to_read) as f:
-                while True:
-                    # Read from file
-                    c = f.read(1)
-                    if not c:
-                        break
-                    if c in find_this:
-                        data_number_distrubution[f"occurrence_of_number_{c}"] += 1
-                        data_number_distrubution["total_amount_of_numbers"] += 1
-                    # ignore dot
-                    elif c == ".":
-                        pass
-                    else:
-                        # Found a nonnumerical character or not correctly formatted, this is a error
-                        raise number_has_nonnumerical_characters_error
-            # Calculate the percentage of the specific number occured, in comparison to total amount of numbers that occured
-            for n in range(0, 10):
-                data_number_distrubution[f"percentage_of_number_{n}"] = \
-                data_number_distrubution[f"occurrence_of_number_{n}"] / data_number_distrubution["total_amount_of_numbers"]
-    except number_has_nonnumerical_characters_error:
-        print("ERROR!", file = sys.stderr)
-        print(f"The file {filename_to_read} has nonnumerical number(s) or is not correctly formatted(e.g.:new line),", file = sys.stderr)
-        print(f"Calculating the distribution of numbers in the file {filename_to_read} was aborted", file = sys.stderr)
-        data_number_distrubution = {}
+        float(s)
+        return True
+    except ValueError:
+        return False
+#distribution of character
+#distribution of character, ignore escape character and tab
+#distribution of numbers
+#distribution of numbers in base-16
+def get_distribution_of_tokens_in_file(filename_to_read, option = "distribution of character"):
+    """Return the distribution of tokens in file."""
+    # Read the file
+    try:
+        with open(filename_to_read) as f:
+            file_contents = f.read()
     except FileNotFoundError:
-        print("ERROR!", file = sys.stderr)
-        print(f"The file {filename_to_read} was not found,", file = sys.stderr)
-        print(f"Calculating the distribution of numbers in the file {filename_to_read} was aborted", file = sys.stderr)
-        data_number_distrubution = {}
-    return data_number_distrubution
+        print(f"ERROR: The file '{filename_to_read}' was not found.", file=sys.stderr)
+        return {}
+
+    if not file_contents:
+        print(f"ERROR: The file '{filename_to_read}' is empty!", file=sys.stderr)
+        return {}
+
+    # Check if file content is a number, if set in options
+    if option == "distribution of numbers" or option == "distribution of numbers in base-16":
+        # Remove all dots
+        file_content = file_content.replace('.', '')
+        # Check if valid number
+        if is_number(file_content) == False:
+            print(f"ERROR: The file '{filename_to_read}' is not a valid number!", file=sys.stderr)
+            return {}
+
+    # Convert to hex(base-16) if option is set
+    if option == "distribution of numbers in base-16":
+        # Convert file content to integer
+        file_content = int(file_content)
+        # Convert file to base-16
+        file_contents = hex(file_content)
+        # Remove 0x from begging of string
+        file_contents = file_contents[2:0]
+
+    # Count all tokens in the file
+    tokens = {}
+    for token in file_contents:
+        if token in tokens:
+            tokens[token] += 1
+        else:
+            tokens[token] = 1
+
+    # Remove escape character and tab
+    if option == "distribution of character, ignore escape character and tab" or \
+    option == "distribution of numbers" or option == "distribution of numbers in base-16":
+        if "\t" in tokens:
+            del tokens["\t"]
+        if "\n" in tokens:
+            del tokens["\n"]
+        if "\r" in tokens:
+            del tokens["\r"]
+
+    return tokens
+def print_table(data):
+    if any(data):
+        # Get padding for the first column
+        padding = data[0].index("|")
+        # Print information about the file and first row
+        #print(f"File: {file}", file = sys.stdout)
+        print(data[0], file = sys.stdout)
+        #print("Number |   %   | Number of occurrence", file = sys.stdout)
+        print(data[1], file = sys.stdout)
+        # Get total value
+        total = 0
+        dict = data[2]
+        for key, value in dict.items():
+            total += value
+        # Print table
+        for key, value in dict.items():
+            p = round(value/total, 3)
+            p = str(p)
+            print(f" {key:<padding} | {p:<5} | {value}", file = sys.stdout)
+        print(f"Total numbers that occured: {total}", file = sys.stdout)
+
 def get_distrubution_of_digits_in_file_base_hex(filename_to_read):
     """Return the distribution of digits in the in base-16."""
     data_number_distrubution = {}
@@ -257,6 +293,11 @@ def get_distrubution_of_digits_in_file_base_hex(filename_to_read):
         print(f"Calculating the distribution of numbers in the file {filename_to_read} was aborted", file = sys.stderr)
         data_number_distrubution = {}
     return data_number_distrubution
+
+
+
+
+# ----------------------------------------------------------------
 def get_distributing_of_character_compared_to_each_other(filename):
     count_data = {}
     if os.stat(filename).st_size == 0:
@@ -316,6 +357,9 @@ def print_distrubution_of_digits(data, file):
             o = data[f"occurrence_of_number_{n}"]
             print(f" {n:<5} | {p:<5} | {o}", file = sys.stdout)
         print(f"Total numbers that occured: {data['total_amount_of_numbers']}", file = sys.stdout)
+
+
+#----------------------------------------------------------------        
 def print_the_distributing_of_character_compared_to_each_other(data, filename):
     if any(data):
         print(f"File: {filename}", file = sys.stdout)
@@ -396,32 +440,58 @@ def main():
 
     if args.d is not None:
         try:
-            data_of_character_distrubution = get_distrubution_of_characters_in_file(args.d, False)
-            print_distrubution_of_characters(data_of_character_distrubution, args.d)
+            dict = get_distribution_of_tokens_in_file(args.d, "distribution of character")
+            if bool(dict):
+                data = []
+                data.append(f"File: {args.d}")
+                data.append("Character |   %   | Number of occurrence")
+                data.append(dict)
+                print_table(data)
         except Exception as e:
             print("ERROR!", file = sys.stderr)
             print(f"Unexpected error has occurred, info: {sys.exc_info()[0].__name__},", file = sys.stderr)
             print(f"Calculating the distribution of characters in the file {args.d} was aborted", file = sys.stderr)
     if args.di is not None:
         try:
-            data_of_character_distrubution = get_distrubution_of_characters_in_file(args.di, True)
-            print_distrubution_of_characters(data_of_character_distrubution, args.di)
+            dict = get_distribution_of_tokens_in_file(args.d, "distribution of character, ignore escape character and tab")
+            if bool(dict):
+                data = []
+                data.append(f"File: {args.d}")
+                data.append("Character |   %   | Number of occurrence")
+                data.append(dict)
+                print_table(data)
+            #data_of_character_distrubution = get_distrubution_of_characters_in_file(args.di, True)
+            #print_distrubution_of_characters(data_of_character_distrubution, args.di)
         except Exception as e:
             print("ERROR!", file = sys.stderr)
             print(f"Unexpected error has occurred, info: {sys.exc_info()[0].__name__},", file = sys.stderr)
             print(f"Calculating the distribution of characters in the file {args.di} was aborted", file = sys.stderr) 
     if args.dd is not None:
         try:
-            data_of_numbers = get_distrubution_of_digits_in_file(args.dd)
-            print_distrubution_of_digits(data_of_numbers, args.dd)
+            dict = get_distribution_of_tokens_in_file(args.d, "distribution of numbers")
+            if bool(dict):
+                data = []
+                data.append(f"File: {args.d}")
+                data.append("Number |   %   | Number of occurrence")
+                data.append(dict)
+                print_table(data)
+            #data_of_numbers = get_distrubution_of_digits_in_file(args.dd)
+            #print_distrubution_of_digits(data_of_numbers, args.dd)
         except Exception as e:
             print("ERROR!", file = sys.stderr)
             print(f"Unexpected error has occurred, info: {sys.exc_info()[0].__name__},", file = sys.stderr)
             print(f"Calculating the distribution of numbers in the file {args.dd} was aborted", file = sys.stderr)
     if args.dhex is not None:
         try:
-            data_of_numbers = get_distrubution_of_digits_in_file(args.dd)
-            print_distrubution_of_digits(data_of_numbers, args.dd)
+            dict = get_distribution_of_tokens_in_file(args.d, "distribution of numbers in base-16")
+            if bool(dict):
+                data = []
+                data.append(f"File: {args.d}")
+                data.append("Number |   %   | Number of occurrence")
+                data.append(dict)
+                print_table(data)
+            #data_of_numbers = get_distrubution_of_digits_in_file(args.dd)
+            #print_distrubution_of_digits(data_of_numbers, args.dd)
         except Exception as e:
             print("ERROR!", file = sys.stderr)
             print(f"Unexpected error has occurred, info: {sys.exc_info()[0].__name__},", file = sys.stderr)
