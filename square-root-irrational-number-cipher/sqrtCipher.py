@@ -102,13 +102,13 @@ def xor_file(input_file, key_file, output_file):
         key_index = 0
         for char in plain_text:
             hex_value = int(key[key_index:key_index+2], 16)
-            char = char ^ hex_value # XOR and get new value
-            byte_values_output.append(char) # store new value
-            key_index = (key_index + 2) % len(key) # wrap around key index
+            char = char ^ hex_value                # XOR and get new value
+            byte_values_output.append(char)        # Store new value
+            key_index = (key_index + 2) % len(key) # Wrap around key index
             
         # Open the file in write mode, overwriting its contents if it exists
         with open(output_file, "wb") as file:
-            file.write(byte_values_output) # Write byte values to file
+            file.write(byte_values_output)         # Write byte values to file
     except FileNotFoundError as e:
         print(f"File not found error: {e}", file=sys.stderr)
     except PermissionError as e:
@@ -209,11 +209,11 @@ def get_distributing_of_character_compared_to_each_other(filename):
                 count_data[c]["sum_of_value_found_distance"] += count_data[c]["n-th_last_time_character_was_found"]
                 count_data[c]["n-th_last_time_character_was_found"] = 0
             count_data[c]["total_number_of_character_found"] += 1
-            # add to all character that have been found +1, except for the character that was read
+            # Add +1 to all characters that have been found, except for the one that was just read
             for key, value in count_data.items():
                 if (key != c):
                     value["n-th_last_time_character_was_found"] += 1
-    # calculate the percentage/fraction the value occurred, compared to total distance that value has, sumed
+    # Calculate the percentage/fraction the value occurred, compared to total distance that value has, summed
     for key, value in count_data.items():
         value["distribution_of_value"] = value["sum_of_value_found_distance"] / value["total_number_of_character_found"]
     return count_data
@@ -263,10 +263,8 @@ def main():
         elif args.dl is not None:
             number_of_decimal_numbers_in_file(args.dl)
 
-        elif args.e is not None: #or args.de is not None:
+        elif args.e is not None or args.de is not None:
             xor_file(args.e[0], args.e[1], args.e[2])
-        elif args.de is not None:
-            xor_file(args.de[0], args.de[1], args.de[2])
 
         elif args.d is not None:
             dict = get_distribution_of_tokens_in_file(args.d, "distribution of character", args.b)
