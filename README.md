@@ -1,6 +1,6 @@
 # square-root-irrational-number-cipher
 
-Cipher that uses a key that is an irrational number, known as irrational cipher. The irrational number is from the square root of a non-square number.
+A cipher that uses an irrational number as its key. Known as an irrational cipher. The irrational number is derived from the square root of a non-square number.
 
 Written by philip0000000 <br>
 Find the project here [https://github.com/philip0000000/OldFileFormatToXML] <br>
