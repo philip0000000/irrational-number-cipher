@@ -23,18 +23,18 @@ The program cipher works with irrational numbers obtained from the square roots 
 
 ## Usage
 
-When choosing the number to use for generating the square root number, it is advised to use the command:
+When selecting the number to generate a square root, it is recommended to use this specific command:
 ```
 sqrtCipher.py -nsqrt
 ```
-As this will generate the N-th non-square number, if one does not use this option, there is a chance one may pick a number that is not irrational if applyed the square root. To generate a non-square number, an interesting algorithm was used[7].
+As this option generates the N-th non-square number, not using it may result in selecting a rational number if the square root is applied. An interesting algorithm was used to generate non-square numbers[7].
 
-The irrational number must be 3x larger than the plaintext in length, that will be encrypted. The reason for this is that 2 decimal numbers are used for 1 character, generating 3 decimal numbers instead of just 2 is just for extra safety if there is some weird thing when encrypting the plain text. To see the size of a file, use the command:
+The length of the irrational number used for encryption must be three times greater than the length of the plaintext to be encrypted. This is because two decimal numbers are used to represent one character, and using three decimal numbers instead of two provides extra safety in case of any unexpected issues during encryption. To determine the size of a file, use the following command:
 ```
 sqrtCipher.py -l
 ```
 
-For generating square root of a number with the amounted needed digits, use the command:
+To generate the square root of a number with the desired number of digits, use the following command:
 ```
 sqrtCipher.py -sqrt
 ```
@@ -49,15 +49,20 @@ To decrypt the ciphertext, use the command:
 sqrtCipher.py -de
 ```
 
-To check that the encryption is good, to prevent frequency analysis attack, the key and the ciphertext should be sufficiently random. There are two values that must be correct for defending against this:
-1. That there exist the same amount of all characters. To check this in a file, use this command:
+To ensure that the encryption is secure against frequency analysis attacks, both the key and ciphertext must be sufficiently random. Two conditions must be correctly implemented to defend against such attacks:
+1. Make sure that there is an equal frequency of all characters in the file. To verify this, use the following command:
 ```
 sqrtCipher.py -di
 ```
-2. That the characters are evenly spaced out, from each other. As a sequence like 0000011111 passes the test for number 1., it is still bad. A better sequence would be 1010101010, as such a frequency is more random. To check this on a file, use this command:
+2. Ensure that the characters are evenly distributed in the sequence, with sufficient spacing between them. Even though a sequence such as 0000011111 may pass the first test, it is not ideal. A better sequence would be 1010101010, as it exhibits a more random frequency distribution. To verify this in a file, use the following command:
 ```
 sqrtCipher.py -dist
 ```
+
+If the characters have more or the same "distribution of value" and "sum of value found distance", it means it is better.
+<br>
+If the key is not long enough for the plaintext, the key will wrap around during the encryption or decryption process.
+For checking encryption or decryption of non-text files such as PNG or JPG images, use the -b flag before any other command. The -b flag can only be used with -d, -di, -dd, and -dist commands.
 
 #### Example:
 1. Get length of file
@@ -74,7 +79,7 @@ python sqrtCipher.py -nsqrt 83927923784947328923
 ```
 python sqrtCipher.py -sqrt 83927923794108547389 sqrt.txt 110577
 ```
-4. Check that the square root value is correct length
+4. Check that the square root value is the correct length
 ```
 python sqrtCipher.py -l sqrt.txt
 110578
@@ -90,11 +95,11 @@ python sqrtCipher.py -de long_plain_text2.txt sqrt.txt long_plain_text3.txt
 ```
 
 #### Check that the encryption is good
-1. check count in encrypted file. Encrypted file should have the same amount of characters for every character(1/63 = 0.015).
+1. Check the character count in the encrypted file. The encrypted file should have an equal amount of characters for each character(1/255 = 0.003).
 ```
 python sqrtCipher.py -di long_plain_text2.txt
 ```
-2. check the cluster. should be evenly clustered
+2. Check the cluster of characters to ensure that it is evenly distributed. All characters in the table should have the same value.
 ```
 python sqrtCipher.py -dist long_plain_text2.txt
 ```
