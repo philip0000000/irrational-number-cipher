@@ -59,7 +59,7 @@ sqrtCipher.py -di
 sqrtCipher.py -dist
 ```
 
-If the characters have more or the same "distribution of value" and "sum of value found distance", it means it is better.
+If the characters have the same "distribution of value" and "sum of value found distance", it means it is better.
 <br>
 If the key is not long enough for the plaintext, the key will wrap around during the encryption or decryption process.
 For checking encryption or decryption of non-text files such as PNG or JPG images, use the -b flag before any other command. The -b flag can only be used with -d, -di, -dd, and -dist commands.
