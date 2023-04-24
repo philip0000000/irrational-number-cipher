@@ -263,8 +263,10 @@ def main():
         elif args.dl is not None:
             number_of_decimal_numbers_in_file(args.dl)
 
-        elif args.e is not None or args.de is not None:
+        elif args.e is not None:
             xor_file(args.e[0], args.e[1], args.e[2])
+        elif args.de is not None:
+            xor_file(args.de[0], args.de[1], args.de[2])
 
         elif args.d is not None:
             dict = get_distribution_of_tokens_in_file(args.d, "distribution of character", args.b)
