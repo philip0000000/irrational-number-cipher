@@ -1,6 +1,6 @@
 # irrational-number-cipher
 
-A cipher that uses an irrational number as its key. Known as an irrational cipher. The irrational number is derived from the square root of a non-square number.
+This is a cipher that uses an irrational number as its key, commonly referred to as an "irrational cipher". The irrational number key is derived from the square root of a non-square number.
 
 Written by philip0000000 <br>
 Find the project here [https://github.com/philip0000000/OldFileFormatToXML] <br>
@@ -8,18 +8,18 @@ Program has been successfully tested on Windows 10 and Ubuntu 22.04 LTS with Pyt
 
 ## Information
 
-The author of the program is not an expert in cryptography. Relying on the encryption of this program, for real-world sensitive data is not advised as the program has not yet been thoroughly tested against cryptographic attacks. This program was made by the author to learn more about irrational numbers and about encryption.
+The author of this program is not a cryptography expert. It is not advised to rely on this program's encryption for real-world sensitive data, as it has not yet been thoroughly tested against cryptographic attacks. The author created this program to learn more about irrational numbers and encryption.
 
-The idea of the program is to use the one-time pad[1], but with a key that is much shorter than the plaintext data that is going to be encrypted or vice versa(ciphertext to plaintext). One solution to this problem is to use stream ciphers[2]. However, this program uses an irrational number[3] to generate the key instead of a stream cipher.
+The idea of the program is to use the one-time pad[1], but with a key that is much shorter than the plaintext data that is going to be encrypted or vice versa (ciphertext to plaintext). One solution to this problem is to use stream ciphers[2]. However, this program uses an irrational number[3] to generate the key instead of a stream cipher.
 
-The benefits of using irrational number compared to stream cipher for a key is:
+The benefits of using an irrational number compared to a stream cipher for a key are:
 1. A short stream cipher may repeat the key pattern, potentially compromising the security of the encryption. An irrational number as a key is endless and does not show a pattern.
 2. Irrational numbers do not have intentional backdoors. Stream ciphers may contain intentional backdoors.
 
-The drawback of using irrational number compared to stream cipher for a key is:
+The drawback of using an irrational number compared to a stream cipher for a key is:
 1. Encrypting with an irrational number should be slower than with stream cipher.
 
-The program cipher works with irrational numbers obtained from the square roots of non-perfect square numbers. This yield an endless supply of irrational numbers[4]. The obtained irrational number is then XOR-ed[5] with the plaintext, corresponding to the required numbers for each character. If the key is sufficiently random, using XOR logic is sufficient for ensuring good security[6].
+The program's cipher works with irrational numbers, which are obtained from the square roots of non-perfect square numbers. This yields an endless supply of irrational numbers[4]. The derived irrational number is then XOR-ed[5] with the plaintext, corresponding to the required numbers for each character. If the key is sufficiently random, using XOR logic should be sufficient to ensure good security[6].
 
 ## Usage
 
@@ -85,21 +85,21 @@ python sqrtCipher.py -l sqrt.txt
 110578
 ```
 
-5. Encrypt:
+5. Encrypt
 ```
 python sqrtCipher.py -e long_plain_text.txt sqrt.txt long_plain_text2.txt
 ```
-6. Decrypt:
+6. Decrypt
 ```
 python sqrtCipher.py -de long_plain_text2.txt sqrt.txt long_plain_text3.txt
 ```
 
 #### Check that the encryption is good
-1. Check the character count in the encrypted file. The encrypted file should have an equal amount of characters for each character(1/255 = 0.003).
+1. Check the character count in the encrypted file. Each character in the encrypted file should appear an equal number of times (1/255 = 0.003).
 ```
 python sqrtCipher.py -di long_plain_text2.txt
 ```
-2. Check the cluster of characters to ensure that it is evenly distributed. All characters in the table should have the same value.
+2. Check the clustering of characters to ensure they are evenly distributed. All characters in the table should have the same value.
 ```
 python sqrtCipher.py -dist long_plain_text2.txt
 ```
@@ -107,15 +107,16 @@ python sqrtCipher.py -dist long_plain_text2.txt
 ![square-root-irrational-number-cipher](example.jpg "example")
 
 #### Schizophrenic number
-Schizophrenic numbers[8] are numbers that show a specific pattern when calculating the square root of. One should avoid using these numbers. The formula to calculate schizophrenic numbers is:
+Schizophrenic numbers[8] are numbers that show a specific pattern when their square roots are calculated. These numbers should be avoided. The formula to calculate schizophrenic numbers is:
 ```
 f(n) = 10 f(n − 1) + n with the initial value f(0) = 0
 ```
-One can also generate pseudo-schizophrenic numbers by repeating the digits "123456790". As for example the square root of 123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790 is:
+One can also generate pseudo-schizophrenic numbers by repeating the digits '123456790'. For example, consider the square root of 
+123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790123456790 is:
 ```
 11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111.111111111111111111111111111111111111111111111111111111...
 ```
-These numbers are not recomended to use as a key when encrypting.
+These numbers are not recommended to be used as a key when encrypting.
 
 ## License
 
