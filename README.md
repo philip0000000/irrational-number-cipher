@@ -1,4 +1,4 @@
-# square-root-irrational-number-cipher
+# irrational-number-cipher
 
 A cipher that uses an irrational number as its key. Known as an irrational cipher. The irrational number is derived from the square root of a non-square number.
 
